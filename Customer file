@@ -1,2 +1,32 @@
 read hi 
 read read Shipping number, location , date 
+class Invoice:
+    def __init__(self, customer_name, items):
+        self.customer_name = customer_name
+        self.items = items
+
+    def calculate_total(self):
+        total = 0
+        for item in self.items:
+            total += item['price'] * item['quantity']
+        return total
+
+    def generate_invoice(self):
+        print("Invoice for:", self.customer_name)
+        print("Items:")
+        for item in self.items:
+            print(item['name'], "- Quantity:", item['quantity'], "- Price:", item['price'])
+        total = self.calculate_total()
+        print("Total:", total)
+
+# Create an invoice
+customer_name = "Seeloo"
+items = [
+    {"name": "Laptop", "quantity": 1, "price": 1000},
+    {"name": "Headphones", "quantity": 2, "price": 50},
+    {"name": "Mouse", "quantity": 1, "price": 20}
+]
+
+invoice = Invoice(customer_name, items)
+invoice.generate_invoice()
+
